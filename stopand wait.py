@@ -48,31 +48,31 @@ class receiver(packets):
         else:
             received= False
         return received
-#checks whether the packet is send or not.
+
 def checker(a, flag):
     if a==True and flag==0:
-        print("The data has been Send ")
+        print("The data has been Send")
     elif a==False and flag==0:
-        print(" The data needs to be resend ")
+        print(" The data needs to be resent")
+        start(n)
     elif a==True and flag== 1:
-        print("The cumulative acknoledgement has  been sent  ")
+        print("The acknoledgement has been sent")
     else:
-        print("The cumulative acnkoledgement has been failed to sent ")
+        print("The acnkoledgement has been failed to sent")
 
 #Staring to send the packets
-n=int(input("Enter the total number of packets to be sent  "))
+n=int(input("Enter the total number of packets to be sent = "))
 p1= packets
 p1.delay=int(input("Enter the Delay of data sent = "))
-p1.ackno=input("Enter the acknoledgement time of data to be sent  =")
-p1.data=input("Enter the data to be sent = ")
+p1.ackno=input("Enter the acknoledgement time of data to be sent = ")
 def start(n):
     for i in range(n):
-        for i in range(3):
-            p1= packets
-            p1.seqno=print("The seqno is = ", i)
-            n=sender.sender_check(p1.delay)
-            flag=0
-            checker(n, flag)
+        p1= packets
+        p1.data=input("Enter the data to be sent = ")
+        p1.seqno=print("The seqno is = ", i)
+        n=sender.sender_check(p1.delay)
+        flag=0
+        checker(n, flag)
         flag=1
         n=receiver.receiver_check(p1.ackno, p1.delay)
         checker(n, flag)
